@@ -22,7 +22,6 @@ final class JSONFileManagerCache: Cache {
         self.destintationUrl = documentsURL.appendingPathComponent("/tasks.txt")
         if fileManager.fileExists(atPath: self.destintationUrl.path) {
             self.content = fileManager.contents(atPath: self.destintationUrl.path) ?? "[]".data(using: .utf8)!
-            print(String(data: content, encoding: .utf8)!)
         } else {
             self.content = "[]".data(using: .utf8)!
             fileManager.createFile(atPath: destintationUrl.path, contents: self.content, attributes: nil)

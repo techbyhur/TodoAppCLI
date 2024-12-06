@@ -29,7 +29,7 @@ struct TodoApp: ParsableCommand {
         self.todoManager = TodoManager.init()
     }
     
-    mutating func run() throws {
+    public mutating func run() throws {
         //take in command line
         print("Welcome to your TODO app!")
         while runApp {
@@ -84,6 +84,7 @@ struct TodoApp: ParsableCommand {
     
     private func toggleTask(_ index: String) throws {
         //convert index to Int
+        print("Please the index of the task you wish to toggle:")
         if let index = Int(index) {
             todoManager.toggleCompletion(forTodoAtIndex: Int(index))
         } else {
@@ -93,6 +94,7 @@ struct TodoApp: ParsableCommand {
     
     private func deleteTask(_ index: String) throws {
         //convert index to Int
+        print("Please the index of the task you wish to delete:")
         if let index = Int(index) {
             todoManager.deleteTodo(atIndex: Int(index))
         } else {
