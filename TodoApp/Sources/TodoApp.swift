@@ -52,6 +52,7 @@ struct TodoApp: ParsableCommand {
     private mutating func handleCommand(_ command: String) throws {
         switch command {
         case "add":
+            print("Please enter task:")
             guard let task = readLine() else {
                 print("❗Invalid input. Please enter a task to add.")
                 return
