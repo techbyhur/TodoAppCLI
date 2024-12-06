@@ -27,6 +27,12 @@ final class InMemoryCache: Cache {
         return todoList
     }
     
+    /*
+     saveAll function to ensure that all the data from within the session is saved within the file manager
+     
+     This is designed this way in order to reduce the number of times data is written to the connected file, and improve efficiency of
+     application.
+     */
     func saveAll(todos: [Todo]) {
         self.fileManger.save(todos: todos)
     }

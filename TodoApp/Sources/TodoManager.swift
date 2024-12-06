@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TodoManager.swift
 //  TodoApp
 //
 //  Created by Ila Hur on 11/29/24.
@@ -21,7 +21,10 @@ final class TodoManager {
     init() {
         listOfTodos = self.inMemoryCacheManager.load() ?? []
     }
-
+    
+    /*
+     listTodos function to list tasks
+     */
     func listTodos() {
         print("📝 List of Tasks:")
         //print out todo tasks
@@ -31,7 +34,10 @@ final class TodoManager {
             index += 1
         }
     }
-
+    
+    /*
+     addTodo function to add task to local list and save it to the local cache
+     */
     func addTodo(with title: String) {
         print("📌 Adding new task: \(title)")
         //add task to todo list
@@ -42,14 +48,20 @@ final class TodoManager {
         print("-- Updated list --")
         listTodos()
     }
-
+    
+    /*
+     toggleCompletion function to toggle the completion status of tasks within the session and save it to the local cache
+     */
     func toggleCompletion(forTodoAtIndex index: Int) {
         print("🔄 Task completion status updating...")
         listOfTodos[index-1].isCompleted.toggle()
         self.inMemoryCacheManager.save(todos: listOfTodos)
         print("🌟 Status updated. You've completed a task! Keep up the great work 🤩")
     }
-
+    
+    /*
+     deleteTodo function to delete task and save it to the local cache
+     */
     func deleteTodo(atIndex index: Int) {
         print("🗑️ Deleting task at index: \(index)")
         listOfTodos.remove(at: index-1)
@@ -58,6 +70,9 @@ final class TodoManager {
         listTodos()
     }
     
+    /*
+     exit function ensure that list of tasks is saved to the connected file
+     */
     func exit() {
         self.inMemoryCacheManager.saveAll(todos: listOfTodos)
     }

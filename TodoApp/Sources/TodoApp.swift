@@ -10,6 +10,7 @@ import Foundation
 @main
 struct TodoApp: ParsableCommand {
     
+    //accepted commands for application
     enum Command {
         case add
         case list
@@ -42,6 +43,9 @@ struct TodoApp: ParsableCommand {
         }
     }
     
+    /*
+        handleCommand function that manages the command input accordingly and executes associate method within the TodoManager
+     */
     private mutating func handleCommand(_ command: String) throws {
         switch command {
         case "add":
@@ -76,14 +80,23 @@ struct TodoApp: ParsableCommand {
         }
     }
     
+    /*
+     addTask function to request Todo Manager to add task
+     */
     private mutating func addTask(_ task: String) throws {
         todoManager.addTodo(with: task)
     }
     
+    /*
+     addTask function to request Todo Manager to list tasks
+     */
     private func listTasks() throws {
         todoManager.listTodos()
     }
     
+    /*
+     addTask function to request Todo Manager to toggle task completion status
+     */
     private func toggleTask(_ index: String) throws {
         //convert index to Int
         if let index = Int(index) {
@@ -93,6 +106,9 @@ struct TodoApp: ParsableCommand {
         }
     }
     
+    /*
+     addTask function to request Todo Manager to delete task
+     */
     private func deleteTask(_ index: String) throws {
         //convert index to Int
         if let index = Int(index) {

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  JSONFileManagerCache.swift
 //  TodoApp
 //
 //  Created by Ila Hur on 11/29/24.
@@ -31,9 +31,12 @@ final class JSONFileManagerCache: Cache {
         }
     }
     
+    /*
+     save function to write todo data to the connected file
+     */
     func save(todos: [Todo]) {
         //convert the todo list to a JSON array and write it to the file
-        guard let updatedContent = toString(from: todos)?.data(using: .utf8) else {
+        guard let updatedContent = encodeData(from: todos)?.data(using: .utf8) else {
             print("Failed to convert content to JSON")
             return
         }
@@ -45,6 +48,9 @@ final class JSONFileManagerCache: Cache {
         }
     }
     
+    /*
+     load function to load tasks from connected file
+     */
     func load() -> [Todo]? {
         //convert file data to Todo list
         do {
@@ -56,7 +62,11 @@ final class JSONFileManagerCache: Cache {
         return []
     }
     
-    private func toString(from list:[Todo]) -> String? {
+    /*
+     encodeData function to convert todo list to a JSON object, then to a String object in order to write it to
+     connected text file
+     */
+    private func encodeData(from list:[Todo]) -> String? {
         do {
             let data = try JSONEncoder().encode(list)
             return String(data: data, encoding: String.Encoding.utf8)
