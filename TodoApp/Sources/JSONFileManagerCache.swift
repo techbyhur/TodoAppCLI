@@ -10,6 +10,8 @@ import Foundation
 // `FileSystemCache`: This implementation should utilize the file system
 // to persist and retrieve the list of todos.
 // Utilize Swift's `FileManager` to handle file operations.
+
+//Note: some of the FileManager setup code was created by refering to https://www.swiftyplace.com/blog/file-manager-in-swift-reading-writing-and-deleting-files-and-directories
 final class JSONFileManagerCache: Cache {
     
     let fileManager: FileManager = FileManager.default
