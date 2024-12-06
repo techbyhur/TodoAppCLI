@@ -53,12 +53,14 @@ struct TodoApp: ParsableCommand {
         case "list":
             try listTasks()
         case "toggle":
+            print("Please the index of the task you wish to toggle:")
             guard let task = readLine() else {
                 print("❗Invalid input. Please enter a valid task to toggle.")
                 return
             }
             try toggleTask(task)
         case "delete":
+            print("Please the index of the task you wish to delete:")
             guard let index = readLine() else {
                 print("❗Invalid input. Please enter a task to delete.")
                 return
@@ -84,7 +86,6 @@ struct TodoApp: ParsableCommand {
     
     private func toggleTask(_ index: String) throws {
         //convert index to Int
-        print("Please the index of the task you wish to toggle:")
         if let index = Int(index) {
             todoManager.toggleCompletion(forTodoAtIndex: Int(index))
         } else {
@@ -94,7 +95,6 @@ struct TodoApp: ParsableCommand {
     
     private func deleteTask(_ index: String) throws {
         //convert index to Int
-        print("Please the index of the task you wish to delete:")
         if let index = Int(index) {
             todoManager.deleteTodo(atIndex: Int(index))
         } else {
