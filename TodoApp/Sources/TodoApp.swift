@@ -19,7 +19,10 @@ struct TodoApp: ParsableCommand {
         case exit
     }
     
+    //local TodoManager object variable
     private let todoManager: TodoManager
+    
+    //variable to ensure application exits
     private var runApp = true
     
     init() {
@@ -71,10 +74,7 @@ struct TodoApp: ParsableCommand {
             }
             try deleteTask(index)
         case "exit":
-            print("Saving data..")
-            todoManager.exit()
-            print("👋 Goodbye!")
-            runApp = false
+            exitApp()
         default:
             print("❗Invalid command, please enter a valid command: (add, list, toggle, delete, exit)")
         }
@@ -88,14 +88,14 @@ struct TodoApp: ParsableCommand {
     }
     
     /*
-     addTask function to request Todo Manager to list tasks
+     listTasks function to request Todo Manager to list tasks
      */
     private func listTasks() throws {
         todoManager.listTodos()
     }
     
     /*
-     addTask function to request Todo Manager to toggle task completion status
+     toggleTask function to request Todo Manager to toggle task completion status
      */
     private func toggleTask(_ index: String) throws {
         //convert index to Int
@@ -107,7 +107,7 @@ struct TodoApp: ParsableCommand {
     }
     
     /*
-     addTask function to request Todo Manager to delete task
+     deleteTask function to request Todo Manager to delete task
      */
     private func deleteTask(_ index: String) throws {
         //convert index to Int
@@ -116,6 +116,15 @@ struct TodoApp: ParsableCommand {
         } else {
             print("Invalid input. Please enter a valid index.")
         }
-        
     }
+    
+    /*
+     exitApp function to save data to file manager and exit the application
+     */
+    private mutating func exitApp() {
+       print("Saving data..")
+       todoManager.exit()
+       print("👋 Goodbye!")
+       runApp = false
+   }
 }
