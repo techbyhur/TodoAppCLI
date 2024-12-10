@@ -14,9 +14,9 @@ import Foundation
 //Note: some of the FileManager setup code was created by refering to https://www.swiftyplace.com/blog/file-manager-in-swift-reading-writing-and-deleting-files-and-directories
 final class JSONFileManagerCache: Cache {
     
-    let fileManager: FileManager = FileManager.default
-    let content: Data
-    let destintationUrl: URL
+    private let fileManager: FileManager = FileManager.default
+    private let content: Data
+    private let destintationUrl: URL
     
     init() {
         let documentsURL = self.fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
