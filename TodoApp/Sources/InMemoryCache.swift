@@ -11,29 +11,18 @@
 // but serves as a quick in-session cache.
 final class InMemoryCache: Cache {
     
-    private let fileManger: JSONFileManagerCache
     private var todoList: [Todo]
     
-    init() {
-        self.fileManger = .init()
-        todoList = self.fileManger.load() ?? []
+    init(savedList list: [Todo]?) {
+        self.todoList = list ?? []
     }
     
-    func save(todos: [Todo]) {
+    func save(todos: [Todo]) -> Bool {
         todoList = todos
+        return true
     }
     
     func load() -> [Todo]? {
         return todoList
-    }
-    
-    /*
-     saveAll function to ensure that all the data from within the session is saved within the file manager
-     
-     This is designed this way in order to reduce the number of times data is written to the connected file, and improve efficiency of
-     application.
-     */
-    func saveAll(todos: [Todo]) {
-        self.fileManger.save(todos: todos)
     }
 }

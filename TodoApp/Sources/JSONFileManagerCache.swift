@@ -34,17 +34,19 @@ final class JSONFileManagerCache: Cache {
     /*
      save function to write todo data to the connected file
      */
-    func save(todos: [Todo]) {
+    func save(todos: [Todo]) -> Bool {
         //convert the todo list to a JSON array and write it to the file
         guard let updatedContent = encodeData(from: todos)?.data(using: .utf8) else {
-            print("Failed to convert content to JSON")
-            return
+            print("Failed to convert content to JSON. Please try again later.")
+            return false
         }
         do {
             try updatedContent.write(to: destintationUrl)
             print("File updated successfully")
+            return true
         } catch {
             print("Failed to update file: \(error.localizedDescription)")
+            return false
         }
     }
     

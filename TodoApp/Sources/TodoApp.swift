@@ -26,11 +26,11 @@ struct TodoApp: ParsableCommand {
     private var runApp = true
     
     init() {
-        self.todoManager = TodoManager.init()
+        self.todoManager = TodoManager.init(cache: InMemoryCache(savedList: JSONFileManagerCache().load()))
     }
     
     init(from decoder: any Decoder) throws {
-        self.todoManager = TodoManager.init()
+        self.todoManager = TodoManager.init(cache: InMemoryCache(savedList: JSONFileManagerCache().load()))
     }
     
     public mutating func run() throws {
@@ -103,7 +103,7 @@ struct TodoApp: ParsableCommand {
         if let index = Int(index) {
             todoManager.toggleCompletion(forTodoAtIndex: Int(index))
         } else {
-            print("Invalid input. Please enter a valid index.")
+            print("❗Invalid input. Please enter a valid index.")
         }
     }
     
@@ -115,7 +115,7 @@ struct TodoApp: ParsableCommand {
         if let index = Int(index) {
             todoManager.deleteTodo(atIndex: Int(index))
         } else {
-            print("Invalid input. Please enter a valid index.")
+            print("❗Invalid input. Please enter a valid index.")
         }
     }
     
@@ -123,9 +123,9 @@ struct TodoApp: ParsableCommand {
      exitApp function to save data to file manager and exit the application
      */
     private mutating func exitApp() {
-       print("Saving data..")
-       todoManager.exit()
-       print("👋 Goodbye!")
-       runApp = false
+        print("Saving data..")
+        self.todoManager.exit(cache: JSONFileManagerCache())
+        print("👋 Goodbye!")
+        runApp = false
    }
 }
