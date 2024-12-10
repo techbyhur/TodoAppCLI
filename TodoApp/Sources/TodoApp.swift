@@ -41,7 +41,7 @@ struct TodoApp: ParsableCommand {
             if let command = readLine() {
                 try handleCommand(command)
             } else {
-                print("❗Invalid command, please enter a valid command: [add, list, toggle, delete, exit]")
+                print("❗ Invalid command, please enter a valid command: [add, list, toggle, delete, exit]")
             }
         }
     }
@@ -54,7 +54,7 @@ struct TodoApp: ParsableCommand {
         case "add":
             print("Please enter task:")
             guard let task = readLine() else {
-                print("❗Invalid input. Please enter a task to add.")
+                print("❗ Invalid input. Please enter a task to add.")
                 return
             }
             try addTask(task)
@@ -63,21 +63,21 @@ struct TodoApp: ParsableCommand {
         case "toggle":
             print("Please the index of the task you wish to toggle:")
             guard let task = readLine() else {
-                print("❗Invalid input. Please enter a valid task to toggle.")
+                print("❗ Invalid input. Please enter a valid task to toggle.")
                 return
             }
             try toggleTask(task)
         case "delete":
             print("Please the index of the task you wish to delete:")
             guard let index = readLine() else {
-                print("❗Invalid input. Please enter a task to delete.")
+                print("❗ Invalid input. Please enter a task to delete.")
                 return
             }
             try deleteTask(index)
         case "exit":
             exitApp()
         default:
-            print("❗Invalid command, please enter a valid command: (add, list, toggle, delete, exit)")
+            print("❗ Invalid command, please enter a valid command: (add, list, toggle, delete, exit)")
         }
     }
     
@@ -103,7 +103,7 @@ struct TodoApp: ParsableCommand {
         if let index = Int(index) {
             todoManager.toggleCompletion(forTodoAtIndex: Int(index))
         } else {
-            print("❗Invalid input. Please enter a valid index.")
+            print("❗ Invalid input. Please enter a valid index.")
         }
     }
     
@@ -115,7 +115,7 @@ struct TodoApp: ParsableCommand {
         if let index = Int(index) {
             todoManager.deleteTodo(atIndex: Int(index))
         } else {
-            print("❗Invalid input. Please enter a valid index.")
+            print("❗ Invalid input. Please enter a valid index.")
         }
     }
     
